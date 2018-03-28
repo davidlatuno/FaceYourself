@@ -14,7 +14,7 @@ Use Face++ to gather emotion data from a face image then request information bas
 
   • Must have a polished fronted / UI 
 
-  • Must meet goo quality coding standards (indentation, scoping, naming)
+  • Must meet good quality coding standards (indentation, scoping, naming)
 
   • Must NOT use alerts, confirms, or prompts (look into models!)
 
