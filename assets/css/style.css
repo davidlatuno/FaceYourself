@@ -44,3 +44,13 @@ img {
 .collapsible {
     margin-top: 30px;
 }
+
+.collapsible-body {
+    padding: 0;
+}
+
+.card-title {
+    text-align: center;
+    display: block;
+    margin-top: -42px;
+}
