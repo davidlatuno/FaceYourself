@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -22,9 +21,8 @@
         </div>
         <div class="row">
             <div class="col s12 m4">
-                <div class="card-panel">
-                    <img id="image" src="assets/images/demo-pic1.jpg">
-                </div>
+                <div class="card-panel mainPanel">
+                    <img src="assets/images/demo-pic1.jpg">
                 <form action="#" enctype="multipart/form-data">
                     <div class="buttons">
                         <div class="input-field">
@@ -47,6 +45,7 @@
             <div class="col s12 m4">
                 <div class="center" id="recognition-data">
                     <h5>Emotions</h5>
+
                     <p>Happiness:
                         <span class="happiness">0.002%</span>
                     </p>
@@ -91,22 +90,90 @@
                     </div>
                 </div>
             </div>
+            </div>
             <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">User 1</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">User 2</span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">User 3</span>
-                    </div>
-                </div>
+                <h5>Saved Feels</h5>
+                <ul class="collapsible">
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">picture_in_picture_alt</i>First</div>
+                        <div class="collapsible-body">
+                            <span>
+                                <img src="assets/images/demo-pic1.jpg">
+                                <span class="card-title">
+                                    <div class="chip">
+                                        #Happy
+                                    </div>
+                                    <div class="chip">
+                                        #Stoked
+                                    </div>
+                                    <div class="chip">
+                                        #Meh
+                                    </div>
+                                </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">picture_in_picture_alt</i>Second</div>
+                        <div class="collapsible-body">
+                            <span>
+                                <img src="assets/images/demo-pic1.jpg">
+                                <span class="card-title">
+                                    <div class="chip">
+                                        #Happy
+                                    </div>
+                                    <div class="chip">
+                                        #Stoked
+                                    </div>
+                                    <div class="chip">
+                                        #Meh
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">picture_in_picture_alt</i>Third</div>
+                        <div class="collapsible-body">
+                            <span>
+                                <img src="assets/images/demo-pic1.jpg">
+                                <span class="card-title">
+                                    <div class="chip">
+                                        #Happy
+                                    </div>
+                                    <div class="chip">
+                                        #Stoked
+                                    </div>
+                                    <div class="chip">
+                                        #Meh
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">
+                            <i class="material-icons">picture_in_picture_alt</i>Fourth</div>
+                        <div class="collapsible-body">
+                            <span>
+                                <img src="assets/images/demo-pic1.jpg">
+                                <span class="card-title">
+                                    <div class="chip">
+                                        #Happy
+                                    </div>
+                                    <div class="chip">
+                                        #Stoked
+                                    </div>
+                                    <div class="chip">
+                                        #Meh
+                                    </div>
+                                </span>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row">

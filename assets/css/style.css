@@ -3,6 +3,7 @@
 }
 
 h5 {
+    padding-right: 15px;
     text-align: right;
 }
 
@@ -43,4 +44,37 @@ img {
 
 .annoying-button {
     height: 36px !important;
+}
+
+.collapsible {
+    margin-top: 30px;
+}
+
+.collapsible-body {
+    padding: 0;
+}
+
+.card-title {
+    text-align: center;
+    display: block;
+    margin-top: -42px;
+}
+
+.chip {
+    font-size: 11px;
+}
+
+.mainPanel {
+    padding: 0px;
+}
+
+.buttons {
+    padding: 0;
+    margin-top: -5px;
+}
+
+.buttons a {
+    float: left;
+    display: block;
+    width: 50%;
 }
