@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+             <div class="col s12" id="header">
+                    <h2>Header</h2>
+             </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="card-panel">
+                    <img src="assets/images/demo-pic1.jpg">
+                </div>
+                <div class="buttons">
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">add_a_photo</i>upload</a>
+                    <a class="waves-effect waves-light btn"><i class="material-icons left">arrow_upward</i>submit</a>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                <div class="center" id="recognition-data">
+                <h5>Emotions</h5>
+                <p>Happiness: 0.002%</p><div class="progress"><div class="determinate" style="width: 0.002%"></div></div>
+                <p>Neutral: 99.861%</p><div class="progress"><div class="determinate" style="width: 99.861%"></div></div>
+                <p>Surprise: 0.136%</p><div class="progress"><div class="determinate" style="width: 0.136%"></div></div>
+                <p>Sadness: 0%</p><div class="progress"><div class="determinate" style="width: 0%"></div></div>
+                <p>Disgust: 0%</p><div class="progress"><div class="determinate" style="width: 0%"></div></div>
+                <p>Anger: 0.001%</p><div class="progress"><div class="determinate" style="width: 0.001%"></div></div>
+                <p>Fear: 0%</p><div class="progress"><div class="determinate" style="width: 0%"></div></div>
+                </div>
+            </div>
+            <div class="col s12 m4">
+                    <div class="card">
+                            <div class="card-content">
+                              <span class="card-title">User 1</span>
+                            </div>
+                    </div>
+                    <div class="card">
+                            <div class="card-content">
+                              <span class="card-title">User 2</span>
+                            </div>
+                    </div>
+                    <div class="card">
+                            <div class="card-content">
+                              <span class="card-title">User 3</span>
+                            </div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <!-- results go here -->
+            </div>
+        </div>
+
+
+    </div>
+    
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+<script src="assets/javascript/app.js"></script>
+
+</html>
