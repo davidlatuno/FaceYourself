@@ -41,3 +41,10 @@ $("#submit").on("click", function () {
         }
     });
 });
+
+$(document).ready(function(){
+
+    // Collapsing Cards
+    $('.collapsible').collapsible();
+
+  });
