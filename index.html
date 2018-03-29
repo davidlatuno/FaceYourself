@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -24,46 +23,73 @@
             <div class="col s12 m4">
                 <div class="card-panel mainPanel">
                     <img src="assets/images/demo-pic1.jpg">
+                <form action="#" enctype="multipart/form-data">
                     <div class="buttons">
-                        <a class="waves-effect waves-light btn">
-                            <i class="material-icons left">add_a_photo</i>upload</a>
-                        <a class="waves-effect waves-light btn">
+                        <div class="input-field">
+                            <input id="url" type="text" class="validate">
+                            <label for="url">Image URL</label>
+                        </div>
+
+                        <div class="file-field input-field">
+                            <a class=" waves-effect waves-light btn">
+                                <i class="material-icons left">add_a_photo</i>
+                                <span>upload</span>
+                                <input type="file" name="image_file" accept="image/png,image/jpeg" onchange="encodeImageFileAsURL(this)">
+                            </a>
+                        </div>
+                        <a class="waves-effect waves-light btn" id="submit">
                             <i class="material-icons left">arrow_upward</i>submit</a>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col s12 m4">
                 <div class="center" id="recognition-data">
                     <h5>Emotions</h5>
-                    <p>Happiness: 0.002%</p>
+
+                    <p>Happiness:
+                        <span class="happiness">0.002%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0.002%"></div>
+                        <div class="determinate happiness" style="width: 0.002%"></div>
                     </div>
-                    <p>Neutral: 99.861%</p>
+                    <p>Neutral:
+                        <span class="neutral">99.861%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 99.861%"></div>
+                        <div class="determinate neutral" style="width: 99.861%"></div>
                     </div>
-                    <p>Surprise: 0.136%</p>
+                    <p>Surprise:
+                        <span class="surprise">0.136%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0.136%"></div>
+                        <div class="determinate surprise" style="width: 0.136%"></div>
                     </div>
-                    <p>Sadness: 0%</p>
+                    <p>Sadness:
+                        <span class="sadness">0%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0%"></div>
+                        <div class="determinate sadness" style="width: 0%"></div>
                     </div>
-                    <p>Disgust: 0%</p>
+                    <p>Disgust:
+                        <span class="disgust">0%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0%"></div>
+                        <div class="determinate disgust" style="width: 0%"></div>
                     </div>
-                    <p>Anger: 0.001%</p>
+                    <p>Anger:
+                        <span class="anger">0.001%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0.001%"></div>
+                        <div class="determinate anger" style="width: 0.001%"></div>
                     </div>
-                    <p>Fear: 0%</p>
+                    <p>Fear:
+                        <span class="fear">0%</span>
+                    </p>
                     <div class="progress">
-                        <div class="determinate" style="width: 0%"></div>
+                        <div class="determinate fear" style="width: 0%"></div>
                     </div>
                 </div>
+            </div>
             </div>
             <div class="col s12 m4">
                 <h5>Saved Feels</h5>
@@ -158,9 +184,8 @@
 
 
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-<script src="assets/javascript/app.js"></script>
 
 </html>

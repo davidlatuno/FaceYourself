@@ -42,6 +42,10 @@ img {
     padding-left: 45px;
 }
 
+.annoying-button {
+    height: 36px !important;
+}
+
 .collapsible {
     margin-top: 30px;
 }
