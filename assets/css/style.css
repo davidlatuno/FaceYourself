@@ -95,3 +95,20 @@ img {
 #movies, #music, #books {
     overflow: scroll;
 }
+
+.tabs .tab a, .tabs .tab a.active {
+    color: #455a64;
+}
+
+.tabs .tab a:hover {
+    color: #455a64;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    color: #455a64;
+    background-color: #cfd8dc;
+}
+
+.tabs .indicator {
+    background-color: #455a64;
+}
