@@ -78,3 +78,20 @@ img {
     display: block;
     width: 50%;
 }
+
+.annoying-button i {
+    margin-top: -3px;
+}
+
+.annoying-button span {
+    display: block;
+    margin-top: -4px;
+}
+
+#movies .col s4 {
+    margin-top: 50px;
+}
+
+#movies, #music, #books {
+    overflow: scroll;
+}
