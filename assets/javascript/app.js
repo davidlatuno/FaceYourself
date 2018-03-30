@@ -26,14 +26,14 @@ function makeCard(name, image, tags) {
     img.attr("src", image);
     var title = $("<span>");
     title.addClass("card-title");
-    for(var i = 0; i < tags.length; i++) {
+    for (var i = 0; i < tags.length; i++) {
         title.append(`<div class="chip">#${tags[i]}</div>`);
     }
     span.append(img, title);
     body.append(span);
 
     card.append(header, body);
-    if($(".collapsible").children().length > 3) {
+    if ($(".collapsible").children().length > 3) {
         $(".collapsible").children().first().remove();
     }
     $(".collapsible").append(card);
@@ -42,9 +42,9 @@ function makeCard(name, image, tags) {
 $("#submit").on("click", function () {
     var form;
     imgUrl = $("#url").val();
-    if(imgUrl === "") enteredUrl = false;
+    if (imgUrl === "") enteredUrl = false;
     else enteredUrl = true;
-    if(!enteredUrl) {
+    if (!enteredUrl) {
         form = new FormData($("form")[0]);
         $("#image").attr("src", image);
     }
@@ -53,7 +53,7 @@ $("#submit").on("click", function () {
         form.append("image_url", imgUrl);
         $("#image").attr("src", imgUrl);
     }
-    
+
     form.append("api_key", "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z");
     form.append("api_secret", "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF");
     form.append("image_url", image);
@@ -76,7 +76,7 @@ $("#submit").on("click", function () {
             $(`span.${emotion}`).text(`${emotions[emotion]}%`);
             $(`div.${emotion}`).attr("style", `width: ${emotions[emotion]}%`);
         }
-        if(enteredUrl) makeCard("Name", imgUrl, ["happy", "sad"]);
+        if (enteredUrl) makeCard("Name", imgUrl, ["happy", "sad"]);
         else makeCard("Name", image, ["happy", "sad"]);
     });
 
@@ -84,12 +84,18 @@ $("#submit").on("click", function () {
     $("#file").val("");
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
 
     // Collapsing Cards
     $('.collapsible').collapsible();
 
-  });
+    // Tabs with swipeable function
+    $('.tabs').tabs({
+        swipeable: true,
+        responsiveThreshold: Infinity
+    });
+
+});
 
 function removeElement(elementId) {
     // Removes an element from the document
