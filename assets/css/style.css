@@ -112,3 +112,8 @@ img {
 .tabs .indicator {
     background-color: #455a64;
 }
+
+.results {
+    float: left;
+    width: 33%;
+}

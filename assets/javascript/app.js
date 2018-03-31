@@ -4,6 +4,41 @@ var imgUrl;
 var image;
 var enteredUrl;
 
+
+// TasteDive Query Object
+var facePlusData = {
+    happy: {
+        music: ["Edward+sharpe+and+the+magnetic+zeros", "James+brown"],
+        movies: ["The+Pursuit+of+Happiness", "School+of+Rock"],
+        books: ["Where+the+sidewalk+ends", "The+book+of+joy"]
+    },
+    neutral: {
+        music: ["Sweet+Disposition", "Crystalised"],
+        movies: ["Love+actually", "Valentines+day"],
+        books: ["Sherlock+holmes", "Outliers"]
+    },
+    surprise: {
+        music: ["Blue+monday", "Scary+monsters+and+nice+sprites"],
+        movies: ["Citizen+kane", "Momento"],
+        books: ["The+girl+with+the+dragon+tattoo", "Shutter+island"]
+    },
+    sad: {
+        music: ["Will+the+circle+be+unbroken", "Lego+house"],
+        movies: ["Mrs.+Doubtfire", "Marley+and+Me"],
+        books: ["The+hitchhikers+guide+to+the+Galaxy", "I+was+told+there'd+be+cake"]
+    },
+    anger: {
+        music: ["Under+the+knife", "Killing+in+the+name+of"],
+        movies: ["Anger+management", "The+Hurt+locker"],
+        books: ["Anger+taming+a+powerful+emotion", "Seeing+red"]
+    },
+    fear: {
+        music: ["Staralfur", "Unforgettable"],
+        movies: ["Remember+the+titans", "Groundhog+day"],
+        books: ["The+art+of+war", "A+tale+of+three+kings"]
+    }
+}
+
 function encodeImageFileAsURL(element) {
     var file = element.files[0];
     var reader = new FileReader();
@@ -83,6 +118,87 @@ $("#submit").on("click", function () {
     $("#url").val("");
     $("#file").val("");
 });
+
+
+// Use TasteDive to change html for movies
+
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.movies[0] + "%2C" + facePlusData.happy.movies[1] + "&info=1&type=movie";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".movie1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".movie2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".movie3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
+
+// Use TasteDive to change html for music
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.music[0] + "%2C" + facePlusData.happy.music[1] + "&info=1&type=music";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".music1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".music2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".music3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
+
+// Use TasteDive to change html for books
+
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.books[0] + "%2C" + facePlusData.happy.books[1] + "&info=1&type=book";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".book1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".book2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".book3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
 
 $(document).ready(function () {
 
