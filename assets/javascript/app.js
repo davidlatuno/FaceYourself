@@ -288,6 +288,9 @@ $(document).ready(function () {
     // Collapsing Cards
     $('.collapsible').collapsible();
 
+    // modal
+    $('.modal').modal();
+
     // Tabs with swipeable function
     $('.tabs').tabs({
         swipeable: true,
