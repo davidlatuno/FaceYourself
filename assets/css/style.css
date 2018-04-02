@@ -9,6 +9,7 @@ h5 {
 
 body {
     background: url("../images/grey.png");
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -26,6 +27,7 @@ p {
 #header {
     background-color: teal;
     color: white;
+    font-family: 'Lobster Two', cursive;
 }
 
 center {
