@@ -8,34 +8,39 @@ var enteredUrl;
 // TasteDive Query Object
 var facePlusData = {
     happy: {
-        music: ["the+gorillas", "Jackson+5"],
-        movies: ["The+Pursuit+of+Happiness", "School+of+Rock"],
-        books: ["Where+the+sidewalk+ends", "book:eat+pray+love"]
+        music: ["Vance+joy", "Grouplove"],
+        movies: ["The+Birdcage", "School+of+Rock"],
+        books: ["The+year+of+yes", "book:eat+pray+love"]
     },
     neutral: {
-        music: ["Sweet+Disposition", "Crystalised"],
-        movies: ["Love+actually", "Valentines+day"],
-        books: ["Sherlock+holmes", "Outliers"]
+        music: ["Temper+trap", "Silversun+pickups"],
+        movies: ["Big+Fish", "Valentines+day"],
+        books: ["book:The+great+gatsby", "The+catcher+in+the+rye"]
     },
     surprise: {
-        music: ["Blue+monday", "Scary+monsters+and+nice+sprites"],
-        movies: ["Citizen+kane", "Momento"],
-        books: ["The+girl+with+the+dragon+tattoo", "Shutter+island"]
+        music: ["The+mars+volta", "Rush"],
+        movies: ["The+sixth+sense", "Memento"],
+        books: ["book:The+girl+with+the+dragon+tattoo", "book:Shutter+island"]
     },
     sad: {
-        music: ["Will+the+circle+be+unbroken", "Lego+house"],
-        movies: ["Mrs.+Doubtfire", "Marley+and+Me"],
-        books: ["The+hitchhikers+guide+to+the+Galaxy", "I+was+told+there'd+be+cake"]
+        music: ["Death+Cab+for+Cutie", "Have+a+nice+life"],
+        movies: ["Schindler's+List", "Marley+and+Me"],
+        books: ["The+Road", "A+thousand+splendid+suns"]
     },
     anger: {
-        music: ["Under+the+knife", "Killing+in+the+name+of"],
-        movies: ["Anger+management", "The+Hurt+locker"],
-        books: ["Anger+taming+a+powerful+emotion", "Seeing+red"]
+        music: ["Converge", "Harms+way"],
+        movies: ["movie:The+Revenant", "The+Punisher"],
+        books: ["book:Game+of+thrones", "book:Gone+girl"]
     },
     fear: {
-        music: ["Staralfur", "Unforgettable"],
-        movies: ["Remember+the+titans", "Groundhog+day"],
-        books: ["The+art+of+war", "A+tale+of+three+kings"]
+        music: ["Dragonforce", "Mayhem"],
+        movies: ["The+Exorcist", "It"],
+        books: ["book:house+of+leaves", "book:american+Psycho"]
+    },
+    disgust: {
+        music: ["insane+Clown+Posse", "Limp+bizkit"],
+        movies: ["Eraseshead", "The+Fly"],
+        books: ["book:Pet+semetary", "book:The+jungle"]
     }
 }
 
@@ -120,9 +125,9 @@ $("#submit").on("click", function () {
 });
 
 
-// Use TasteDive to change html for movies
+Use TasteDive to change html for movies
 
-var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.movies[0] + "%2C" + facePlusData.happy.movies[1] + "&info=1&limit=12&type=movies";
+var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + facePlusData.disgust.movies[0] + "%2C" + facePlusData.disgust.movies[1] + "&info=1&limit=12&type=movies";
 
 $.ajax({
     url: queryUrl,
@@ -148,7 +153,7 @@ $.ajax({
 })
 
 // Use TasteDive to change html for music
-var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.music[0] + "%2C" + facePlusData.happy.music[1] + "&info=1&limit=12&type=music";
+var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + facePlusData.disgust.music[0] + "%2C" + facePlusData.disgust.music[1] + "&info=1&limit=12&type=music";
 
 $.ajax({
     url: queryUrl,
@@ -175,7 +180,7 @@ $.ajax({
 
 // Use TasteDive to change html for books
 
-var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.books[0] + "%2C" + facePlusData.happy.books[1] + "&info=1&limit=12&type=books";
+var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + facePlusData.disgust.books[0] + "%2C" + facePlusData.disgust.books[1] + "&info=1&limit=12&type=books";
 
 $.ajax({
     url: queryUrl,
