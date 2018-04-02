@@ -4,6 +4,41 @@ var imgUrl;
 var image;
 var enteredUrl;
 
+
+// TasteDive Query Object
+var facePlusData = {
+    happy: {
+        music: ["the+gorillas", "Jackson+5"],
+        movies: ["The+Pursuit+of+Happiness", "School+of+Rock"],
+        books: ["Where+the+sidewalk+ends", "book:eat+pray+love"]
+    },
+    neutral: {
+        music: ["Sweet+Disposition", "Crystalised"],
+        movies: ["Love+actually", "Valentines+day"],
+        books: ["Sherlock+holmes", "Outliers"]
+    },
+    surprise: {
+        music: ["Blue+monday", "Scary+monsters+and+nice+sprites"],
+        movies: ["Citizen+kane", "Momento"],
+        books: ["The+girl+with+the+dragon+tattoo", "Shutter+island"]
+    },
+    sad: {
+        music: ["Will+the+circle+be+unbroken", "Lego+house"],
+        movies: ["Mrs.+Doubtfire", "Marley+and+Me"],
+        books: ["The+hitchhikers+guide+to+the+Galaxy", "I+was+told+there'd+be+cake"]
+    },
+    anger: {
+        music: ["Under+the+knife", "Killing+in+the+name+of"],
+        movies: ["Anger+management", "The+Hurt+locker"],
+        books: ["Anger+taming+a+powerful+emotion", "Seeing+red"]
+    },
+    fear: {
+        music: ["Staralfur", "Unforgettable"],
+        movies: ["Remember+the+titans", "Groundhog+day"],
+        books: ["The+art+of+war", "A+tale+of+three+kings"]
+    }
+}
+
 function encodeImageFileAsURL(element) {
     var file = element.files[0];
     var reader = new FileReader();
@@ -26,14 +61,14 @@ function makeCard(name, image, tags) {
     img.attr("src", image);
     var title = $("<span>");
     title.addClass("card-title");
-    for(var i = 0; i < tags.length; i++) {
+    for (var i = 0; i < tags.length; i++) {
         title.append(`<div class="chip">#${tags[i]}</div>`);
     }
     span.append(img, title);
     body.append(span);
 
     card.append(header, body);
-    if($(".collapsible").children().length > 3) {
+    if ($(".collapsible").children().length > 3) {
         $(".collapsible").children().first().remove();
     }
     $(".collapsible").append(card);
@@ -42,9 +77,9 @@ function makeCard(name, image, tags) {
 $("#submit").on("click", function () {
     var form;
     imgUrl = $("#url").val();
-    if(imgUrl === "") enteredUrl = false;
+    if (imgUrl === "") enteredUrl = false;
     else enteredUrl = true;
-    if(!enteredUrl) {
+    if (!enteredUrl) {
         form = new FormData($("form")[0]);
         $("#image").attr("src", image);
     }
@@ -53,7 +88,7 @@ $("#submit").on("click", function () {
         form.append("image_url", imgUrl);
         $("#image").attr("src", imgUrl);
     }
-    
+
     form.append("api_key", "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z");
     form.append("api_secret", "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF");
     form.append("image_url", image);
@@ -76,7 +111,7 @@ $("#submit").on("click", function () {
             $(`span.${emotion}`).text(`${emotions[emotion]}%`);
             $(`div.${emotion}`).attr("style", `width: ${emotions[emotion]}%`);
         }
-        if(enteredUrl) makeCard("Name", imgUrl, ["happy", "sad"]);
+        if (enteredUrl) makeCard("Name", imgUrl, ["happy", "sad"]);
         else makeCard("Name", image, ["happy", "sad"]);
     });
 
@@ -84,12 +119,99 @@ $("#submit").on("click", function () {
     $("#file").val("");
 });
 
-$(document).ready(function(){
+
+// Use TasteDive to change html for movies
+
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.movies[0] + "%2C" + facePlusData.happy.movies[1] + "&info=1&limit=12&type=movies";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".movie1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".movie2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".movie3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
+
+// Use TasteDive to change html for music
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.music[0] + "%2C" + facePlusData.happy.music[1] + "&info=1&limit=12&type=music";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".music1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".music2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".music3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
+
+// Use TasteDive to change html for books
+
+var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + facePlusData.happy.books[0] + "%2C" + facePlusData.happy.books[1] + "&info=1&limit=12&type=books";
+
+$.ajax({
+    url: queryUrl,
+    jsonp: "callback",
+    dataType: "jsonp",
+    data: { format: "json" }
+}).then(function (response) {
+
+    console.log(response.Similar.Info[0].Name);
+
+    for (var i = 0; i < 4; i++) {
+        $(".book1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 4; i < 8; i++) {
+        $(".book2").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+    for (var i = 8; i < 12; i++) {
+        $(".book3").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
+    }
+
+})
+
+$(document).ready(function () {
 
     // Collapsing Cards
     $('.collapsible').collapsible();
 
-  });
+    // Tabs with swipeable function
+    $('.tabs').tabs({
+        swipeable: true,
+        responsiveThreshold: Infinity
+    });
+
+});
 
 function removeElement(elementId) {
     // Removes an element from the document
