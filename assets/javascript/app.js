@@ -10,7 +10,7 @@ var ref = firebase.database().ref();
 
 // TasteDive Query Object
 var facePlusData = {
-    happy: {
+    happiness: {
         music: ["Vance+joy", "Grouplove"],
         movies: ["The+Birdcage", "School+of+Rock"],
         books: ["The+year+of+yes", "book:eat+pray+love"]
@@ -25,7 +25,7 @@ var facePlusData = {
         movies: ["The+sixth+sense", "Memento"],
         books: ["book:The+girl+with+the+dragon+tattoo", "book:Shutter+island"]
     },
-    sad: {
+    sadness: {
         music: ["Death+Cab+for+Cutie", "Have+a+nice+life"],
         movies: ["Schindler's+List", "Marley+and+Me"],
         books: ["The+Road", "A+thousand+splendid+suns"]
@@ -72,6 +72,19 @@ function faceHtml(image, emotions) {
         $(`span.${emotion}`).text(`${emotions[emotion]}%`);
         $(`div.${emotion}`).attr("style", `width: ${emotions[emotion]}%`);
     }
+}
+
+function highest(emotions) {
+    var highest = 0;
+    var highestEmotion = "";
+    for(emotion in emotions) {
+        if(emotions[emotion] > highest) {
+            highest = emotions[emotion];
+            highestEmotion = emotion;
+        }
+    }
+    console.log(highestEmotion);
+    return highestEmotion;
 }
 
 function makeCard(name, image, tags, emotions, path) {
@@ -140,6 +153,7 @@ $("#submit").on("click", function () {
         emotions = JSON.parse(response).faces[0].attributes.emotion;
         if(enteredUrl) faceHtml(imgUrl, emotions);
         else faceHtml(image, emotions);
+        tasteDive(highest(emotions));
     });
 
     $("#favorite").attr("style", "display:default");
@@ -182,11 +196,19 @@ ref.on("child_added", function(snapshot) {
 $("body").on("click", ".chip", function() {
     $("#favorite").attr("style", "display:none");
     faceHtml($(this).data("image"), $(this).data("emotions"));
+    tasteDive(highest($(this).data("emotions")));
 });
 
-function tasteDive(a, b, c, d, e, f) {
+function tasteDive(emotion) {
     //Use TasteDive to change html for movies
-
+    var a = facePlusData[emotion].movies[0];
+    var b = facePlusData[emotion].movies[1];
+    var c = facePlusData[emotion].music[0];
+    var d = facePlusData[emotion].music[1];
+    var e = facePlusData[emotion].books[0];
+    var f = facePlusData[emotion].books[1];
+    
+    $(".results").empty();
     var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
 
     $.ajax({
@@ -266,7 +288,7 @@ function tasteDive(a, b, c, d, e, f) {
     })
 };
 
-tasteDive(facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1],);
+// tasteDive(facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1],);
 
 $(document).ready(function () {
 
