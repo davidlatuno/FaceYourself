@@ -99,6 +99,10 @@ form {
     margin-top: -4px;
 }
 
+#url {
+    margin-top: 12px;
+}
+
 #movies .col s4 {
     margin-top: 50px;
 }
