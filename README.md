@@ -1,27 +1,29 @@
-# All-The-Feels
-Use Face++ to gather emotion data from a user's face image then request youtube videos based on emotion keywords
+# Project Title
+
+FaceYourself
+
+### Prerequisites
+
+A modern web browser and compatible device.
+
+### How to use
+
+Upload a picture from the internet or from your local machine. Press the submit button and get a feedback for what movies/music you should watch.
 
 
-== In Class, 3/28/18 == 
+## Authors
 
-  ## Not necessarily a complete list... will update
+ - Mikaela Mikova - Css Design and Programming
+ - David Latuno - Repo Owner and Programming
+ - Thomas Berry - General Programming
+ - James Erickson - Regex, Agile, and basic Code Monkey :P
 
-  • two apis <= REST APIs
+## License
 
-  • ajax to pull data 
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-  • new library or technology that we haven’t discussed
+## Acknowledgments
 
-  • Must have a polished fronted / UI 
+To all the members of Mike’s MMA Gym, thanks.
 
-  • Must meet good quality coding standards (indentation, scoping, naming)
-
-  • Must NOT use alerts, confirms, or prompts (look into models!)
-
-  • Must have some sort of repeating element (table
-
-  • bootstrap or alternative CSS Framework
-
-  • Must be Deployed (hereby Firebase, GitHub Pages)
-
-  • Must have User Input Validation
+	- James
