@@ -3,7 +3,10 @@ var apisecret = "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF";
 var imgUrl;
 var image;
 var enteredUrl;
+var name;
+var emotions;
 
+var ref = firebase.database().ref();
 
 // TasteDive Query Object
 var facePlusData = {
@@ -53,50 +56,73 @@ function encodeImageFileAsURL(element) {
     reader.readAsDataURL(file);
 }
 
-function makeCard(name, image, tags) {
+function adjectivify(noun) {
+    if(noun === "happiness") return "Happy";
+    if(noun === "neutral") return "Neutral";
+    if(noun === "surprise") return "Surprised";
+    if(noun === "sadness") return "Sad";
+    if(noun === "disgust") return "Disgusted";
+    if(noun === "anger") return "Angry";
+    if(noun === "fear") return "Scared";
+}
+
+function faceHtml(image, emotions) {
+    $("#image").attr("src", image);
+    for (emotion in emotions) {
+        $(`span.${emotion}`).text(`${emotions[emotion]}%`);
+        $(`div.${emotion}`).attr("style", `width: ${emotions[emotion]}%`);
+    }
+}
+
+function makeCard(name, image, tags, emotions, path) {
     var card = $("<li>");
+    card.attr("id", path);
+
     var header = $("<div>");
     header.addClass("collapsible-header");
     header.html(`<i class="material-icons">picture_in_picture_alt</i>${name}</div>`);
     var body = $("<div>");
     body.addClass("collapsible-body");
-
     var span = $("<span>");
     var img = $("<img>");
     img.attr("src", image);
     var title = $("<span>");
     title.addClass("card-title");
     for (var i = 0; i < tags.length; i++) {
-        title.append(`<div class="chip">#${tags[i]}</div>`);
+        var chip = $(`<div class="chip">#${tags[i]}</div>`);
+
+        chip.data("image", image);
+        chip.data("emotions", emotions);
+        title.append(chip);
     }
     span.append(img, title);
     body.append(span);
 
     card.append(header, body);
     if ($(".collapsible").children().length > 3) {
+        var id = $(".collapsible").children().first().attr("id");
         $(".collapsible").children().first().remove();
+        ref.child(id).remove();
     }
     $(".collapsible").append(card);
 }
 
 $("#submit").on("click", function () {
     var form;
+    name = $("#user-name").val();
     imgUrl = $("#url").val();
     if (imgUrl === "") enteredUrl = false;
     else enteredUrl = true;
     if (!enteredUrl) {
         form = new FormData($("form")[0]);
-        $("#image").attr("src", image);
     }
     else {
         form = new FormData();
-        form.append("image_url", imgUrl);
-        $("#image").attr("src", imgUrl);
     }
 
     form.append("api_key", "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z");
     form.append("api_secret", "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF");
-    form.append("image_url", image);
+    form.append("image_url", imgUrl);
     form.append("return_attributes", "emotion");
 
     var settings = {
@@ -111,19 +137,52 @@ $("#submit").on("click", function () {
     };
 
     $.ajax(settings).done(function (response) {
-        var emotions = JSON.parse(response).faces[0].attributes.emotion;
-        for (emotion in emotions) {
-            $(`span.${emotion}`).text(`${emotions[emotion]}%`);
-            $(`div.${emotion}`).attr("style", `width: ${emotions[emotion]}%`);
-        }
-        if (enteredUrl) makeCard("Name", imgUrl, ["happy", "sad"]);
-        else makeCard("Name", image, ["happy", "sad"]);
+        emotions = JSON.parse(response).faces[0].attributes.emotion;
+        if(enteredUrl) faceHtml(imgUrl, emotions);
+        else faceHtml(image, emotions);
     });
 
+    $("#favorite").attr("style", "display:default");
     $("#url").val("");
     $("#file").val("");
+    $("#user-name").val("");
 });
 
+// When the favorite button is clicked, save the current image and its data to firebase
+$("#favorite").on("click", function () {
+    if (enteredUrl) {
+        ref.push({
+            name: name,
+            imgUrl: imgUrl,
+            emotions: emotions
+        })
+    }
+    else {
+        ref.push({
+            name: name,
+            imgUrl: image,
+            emotions: emotions
+        })
+    }
+});
+
+// Create a new entry in the list when an image is added to the firebase
+ref.on("child_added", function(snapshot) {
+    var name = snapshot.val().name;
+    var image = snapshot.val().imgUrl;
+    var emotions = snapshot.val().emotions;
+    var chips = [];
+    for(emotion in emotions) {
+        if(emotions[emotion] > 5) chips.push(adjectivify(emotion));
+    }
+    makeCard(name, image, chips, emotions, snapshot.key);
+});
+
+// Click on a toast to bring back the saved image
+$("body").on("click", ".chip", function() {
+    $("#favorite").attr("style", "display:none");
+    faceHtml($(this).data("image"), $(this).data("emotions"));
+});
 
 function tasteDive(a, b, c, d, e, f) {
     //Use TasteDive to change html for movies

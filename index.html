@@ -91,93 +91,14 @@
                         <div class="determinate fear" style="width: 0%"></div>
                     </div>
                     <br>
-                    <a class="waves-effect waves-light btn"><i class="material-icons left">favorite_border</i>add to favorites</a>
+                    <a id="favorite" class="waves-effect waves-light btn" style="display:none">
+                        <i class="material-icons left">favorite_border</i>add to favorites</a>
                 </div>
             </div>
 
             <div class="col s12 m4">
                 <h5>Saved Feels</h5>
                 <ul class="collapsible">
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">picture_in_picture_alt</i>First</div>
-                        <div class="collapsible-body">
-                            <span>
-                                <img src="assets/images/demo-pic1.jpg">
-                                <span class="card-title">
-                                    <div class="chip">
-                                        #Happy
-                                    </div>
-                                    <div class="chip">
-                                        #Stoked
-                                    </div>
-                                    <div class="chip">
-                                        #Meh
-                                    </div>
-                                </span>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">picture_in_picture_alt</i>Second</div>
-                        <div class="collapsible-body">
-                            <span>
-                                <img src="assets/images/demo-pic1.jpg">
-                                <span class="card-title">
-                                    <div class="chip">
-                                        #Happy
-                                    </div>
-                                    <div class="chip">
-                                        #Stoked
-                                    </div>
-                                    <div class="chip">
-                                        #Meh
-                                    </div>
-                                </span>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">picture_in_picture_alt</i>Third</div>
-                        <div class="collapsible-body">
-                            <span>
-                                <img src="assets/images/demo-pic1.jpg">
-                                <span class="card-title">
-                                    <div class="chip">
-                                        #Happy
-                                    </div>
-                                    <div class="chip">
-                                        #Stoked
-                                    </div>
-                                    <div class="chip">
-                                        #Meh
-                                    </div>
-                                </span>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header">
-                            <i class="material-icons">picture_in_picture_alt</i>Fourth</div>
-                        <div class="collapsible-body">
-                            <span>
-                                <img src="assets/images/demo-pic1.jpg">
-                                <span class="card-title">
-                                    <div class="chip">
-                                        #Happy
-                                    </div>
-                                    <div class="chip">
-                                        #Stoked
-                                    </div>
-                                    <div class="chip">
-                                        #Meh
-                                    </div>
-                                </span>
-                            </span>
-                        </div>
-                    </li>
                 </ul>
             </div>
 
@@ -234,6 +155,19 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBRwFbzuFD4hTXfQoXtLJB9E6Vc8Xum75Y",
+                authDomain: "incl-bec82.firebaseapp.com",
+                databaseURL: "https://incl-bec82.firebaseio.com",
+                projectId: "incl-bec82",
+                storageBucket: "incl-bec82.appspot.com",
+                messagingSenderId: "525580200661"
+            };
+            firebase.initializeApp(config);
+        </script>
         <script src="assets/javascript/app.js"></script>
 </body>
 
