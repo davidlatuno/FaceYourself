@@ -83,7 +83,6 @@ function highest(emotions) {
             highestEmotion = emotion;
         }
     }
-    console.log(highestEmotion);
     return highestEmotion;
 }
 
@@ -218,8 +217,6 @@ function tasteDive(emotion) {
         data: { format: "json" }
     }).then(function (response) {
 
-        console.log(response.Similar.Info[0].Name);
-
         for (var i = 0; i < 4; i++) {
             $(".movie1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
         }
@@ -243,8 +240,6 @@ function tasteDive(emotion) {
         dataType: "jsonp",
         data: { format: "json" }
     }).then(function (response) {
-
-        console.log(response.Similar.Info[0].Name);
 
         for (var i = 0; i < 4; i++) {
             $(".music1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
@@ -271,8 +266,6 @@ function tasteDive(emotion) {
         data: { format: "json" }
     }).then(function (response) {
 
-        console.log(response.Similar.Info[0].Name);
-
         for (var i = 0; i < 4; i++) {
             $(".book1").append(" <div class='col s12'><div class='card blue-grey darken-1'><div class='card-content white-text'><h2>" + response.Similar.Results[i].Name + "</h2><p>" + response.Similar.Results[i].wTeaser + "</p></div></div></div>")
         }
@@ -288,7 +281,7 @@ function tasteDive(emotion) {
     })
 };
 
-// tasteDive(facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1], facePlusData.happy.movies[0], facePlusData.happy.movies[1],);
+tasteDive("neutral");
 
 $(document).ready(function () {
 
@@ -302,9 +295,3 @@ $(document).ready(function () {
     });
 
 });
-
-function removeElement(elementId) {
-    // Removes an element from the document
-    var element = document.getElementById(elementId);
-    element.parentNode.removeChild(element);
-}
