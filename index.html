@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col s12 m4 center">
+            <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image">
                         <img id="image" src="assets/images/demo-pic1.jpg">
@@ -34,15 +34,13 @@
                 <form action="#" enctype="multipart/form-data">
                     <div class="buttons">
                         <div class="file-field input-field">
-                            <a class="annoying-button waves-effect waves-light btn grey lighten-1">
+                            <a class="file-button waves-effect waves-light btn grey lighten-1">
                                 <i class="material-icons left">add_a_photo</i>
-                                <span>upload a photo</span>
                                 <input id="file" type="file" name="image_file" accept="image/png,image/jpeg" onchange="encodeImageFileAsURL(this)">
                             </a>
                         </div>
                     </div>
                 </form>
-                <div id="or">or</div>
                 <div class="input-field imageUrl">
                         <input id="url" type="text" class="validate" placeholder="Image URL">
                     </div>

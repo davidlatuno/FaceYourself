@@ -49,8 +49,8 @@ img {
     padding-left: 45px;
 }
 
-.annoying-button {
-    height: 36px !important;
+.file-button {
+    height: 40px !important;
 }
 
 .collapsible {
@@ -82,29 +82,22 @@ img {
 
 .buttons a {
     margin-top: 25px;
-    width: 60%;
+    width: 40%;
     margin-bottom: 20px;
-    margin-left: 19%;
-}
-
-#or {
-    width:100%;
-    clear:both;
-    text-align: center;
-    margin-bottom: -20px;
-    color: #bdbdbd;
+    margin-left: 5%;
 }
 
 .imageUrl {
-    width: 60%;
-    margin-left: 18%;
+    float: left;
+    width: 40%;
+    margin-left: 5%;
 }
 
 #submit {
     margin-top: 10px;
 }
 
-.annoying-button i {
+.file-button i {
     margin-top: -3px;
 }
 
