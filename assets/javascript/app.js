@@ -2,6 +2,7 @@ var apikey = "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z";
 var apisecret = "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF";
 var imgUrl;
 var image;
+var imageFile = "";
 var enteredUrl;
 var name;
 var emotions;
@@ -51,19 +52,20 @@ function encodeImageFileAsURL(element) {
     var file = element.files[0];
     var reader = new FileReader();
     reader.onloadend = function () {
+        imageFile = file;
         image = reader.result;
     }
     reader.readAsDataURL(file);
 }
 
 function adjectivify(noun) {
-    if(noun === "happiness") return "Happy";
-    if(noun === "neutral") return "Neutral";
-    if(noun === "surprise") return "Surprised";
-    if(noun === "sadness") return "Sad";
-    if(noun === "disgust") return "Disgusted";
-    if(noun === "anger") return "Angry";
-    if(noun === "fear") return "Scared";
+    if (noun === "happiness") return "Happy";
+    if (noun === "neutral") return "Neutral";
+    if (noun === "surprise") return "Surprised";
+    if (noun === "sadness") return "Sad";
+    if (noun === "disgust") return "Disgusted";
+    if (noun === "anger") return "Angry";
+    if (noun === "fear") return "Scared";
 }
 
 function faceHtml(image, emotions) {
@@ -77,8 +79,8 @@ function faceHtml(image, emotions) {
 function highest(emotions) {
     var highest = 0;
     var highestEmotion = "";
-    for(emotion in emotions) {
-        if(emotions[emotion] > highest) {
+    for (emotion in emotions) {
+        if (emotions[emotion] > highest) {
             highest = emotions[emotion];
             highestEmotion = emotion;
         }
@@ -119,46 +121,100 @@ function makeCard(name, image, tags, emotions, path) {
     $(".collapsible").append(card);
 }
 
+function validate(n, f, url) {
+    var validated = true;
+    var errors = [];
+    if (!(n !== "" && (/^[a-z0-9\s&\_]*$/i).test(n))) {
+        validated = false;
+        errors.push("name");
+    }
+    if (f === "" && url === "") {
+        validated = false;
+        errors.push("empty");
+    }
+    else {
+        if (url !== "" && !(/(.jpg$|.png$|.jpeg$)/i).test(url)) {
+            validated = false;
+            errors.push("url");
+        }
+        if (url === "") {
+            if (!(/(.jpg$|.png$|.jpeg$)/i).test(f.name)) {
+                validated = false;
+                console.log(f.name);
+                errors.push("filename");
+            }
+            if (f.size > 2097152) {
+                validated = false;
+                errors.push("filesize");
+            }
+        }
+    }
+
+    displayErrors(errors);
+    return validated;
+}
+
+function displayErrors(errors) {
+    if (errors.includes("name")) {
+        M.toast({html: 'Invalid Name!'})
+    }
+    if (errors.includes("empty")) {
+        M.toast({html: 'No File or URL'})
+    }
+    if (errors.includes("url")) {
+        M.toast({html: 'Invalid image URL'})
+    }
+    if (errors.includes("filename")) {
+        M.toast({html: 'Invalid file name'})
+    }
+    if (errors.includes("filesize")) {
+        M.toast({html: 'File Too Big'})
+    }
+}
+
 $("#submit").on("click", function () {
     var form;
     name = $("#user-name").val();
     imgUrl = $("#url").val();
-    if (imgUrl === "") enteredUrl = false;
-    else enteredUrl = true;
-    if (!enteredUrl) {
-        form = new FormData($("form")[0]);
+    if (validate(name, imageFile, imgUrl)) {
+        if (imgUrl === "") enteredUrl = false;
+        else enteredUrl = true;
+        if (!enteredUrl) {
+            form = new FormData($("form")[0]);
+        }
+        else {
+            form = new FormData();
+        }
+
+        form.append("api_key", "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z");
+        form.append("api_secret", "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF");
+        form.append("image_url", imgUrl);
+        form.append("return_attributes", "emotion");
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api-us.faceplusplus.com/facepp/v3/detect",
+            "method": "POST",
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form
+        };
+
+        $.ajax(settings).done(function (response) {
+            emotions = JSON.parse(response).faces[0].attributes.emotion;
+            if (enteredUrl) faceHtml(imgUrl, emotions);
+            else faceHtml(image, emotions);
+            tasteDive(highest(emotions));
+        });
+
+        $("#favorite").attr("style", "display:default");
     }
-    else {
-        form = new FormData();
-    }
-
-    form.append("api_key", "mTG1xZDZC7R-gIdefVSwhaixToHrJd8z");
-    form.append("api_secret", "yrgYIWFd5OvheUzrAfiLff0oS9_4XkWF");
-    form.append("image_url", imgUrl);
-    form.append("return_attributes", "emotion");
-
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api-us.faceplusplus.com/facepp/v3/detect",
-        "method": "POST",
-        "processData": false,
-        "contentType": false,
-        "mimeType": "multipart/form-data",
-        "data": form
-    };
-
-    $.ajax(settings).done(function (response) {
-        emotions = JSON.parse(response).faces[0].attributes.emotion;
-        if(enteredUrl) faceHtml(imgUrl, emotions);
-        else faceHtml(image, emotions);
-        tasteDive(highest(emotions));
-    });
-
-    $("#favorite").attr("style", "display:default");
     $("#url").val("");
     $("#file").val("");
     $("#user-name").val("");
+    imageFile = "";
 });
 
 // When the favorite button is clicked, save the current image and its data to firebase
@@ -180,19 +236,19 @@ $("#favorite").on("click", function () {
 });
 
 // Create a new entry in the list when an image is added to the firebase
-ref.on("child_added", function(snapshot) {
+ref.on("child_added", function (snapshot) {
     var name = snapshot.val().name;
     var image = snapshot.val().imgUrl;
     var emotions = snapshot.val().emotions;
     var chips = [];
-    for(emotion in emotions) {
-        if(emotions[emotion] > 5) chips.push(adjectivify(emotion));
+    for (emotion in emotions) {
+        if (emotions[emotion] > 5) chips.push(adjectivify(emotion));
     }
     makeCard(name, image, chips, emotions, snapshot.key);
 });
 
 // Click on a toast to bring back the saved image
-$("body").on("click", ".chip", function() {
+$("body").on("click", ".chip", function () {
     $("#favorite").attr("style", "display:none");
     faceHtml($(this).data("image"), $(this).data("emotions"));
     tasteDive(highest($(this).data("emotions")));
@@ -206,7 +262,7 @@ function tasteDive(emotion) {
     var d = facePlusData[emotion].music[1];
     var e = facePlusData[emotion].books[0];
     var f = facePlusData[emotion].books[1];
-    
+
     $(".results").empty();
     var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
 
@@ -296,5 +352,4 @@ $(document).ready(function () {
         swipeable: true,
         responsiveThreshold: Infinity
     });
-
 });
