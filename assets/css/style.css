@@ -165,6 +165,10 @@ img {
     width: 200px;
   }
 
+#imageReq {
+    font-weight: bold !important;
+}
+
 @media screen and (max-width: 1000px) { 
     .imageUrl {
         width: 90%;
