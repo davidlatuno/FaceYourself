@@ -48,6 +48,7 @@ var facePlusData = {
     }
 }
 
+// Reads a file from a file input and converts the file to a data URI
 function encodeImageFileAsURL(element) {
     var file = element.files[0];
     var reader = new FileReader();
@@ -58,6 +59,7 @@ function encodeImageFileAsURL(element) {
     reader.readAsDataURL(file);
 }
 
+// Takes in a Face++ emotion and returns an appropriate adjective representing that emotion
 function adjectivify(noun) {
     if (noun === "happiness") return "Happy";
     if (noun === "neutral") return "Neutral";
@@ -68,6 +70,7 @@ function adjectivify(noun) {
     if (noun === "fear") return "Scared";
 }
 
+// Displays the passed image to the html and writes the emotions to the screen
 function faceHtml(image, emotions) {
     $("#image").attr("src", image);
     for (emotion in emotions) {
@@ -76,6 +79,7 @@ function faceHtml(image, emotions) {
     }
 }
 
+// Takes in an emotion object and returns the emotion with the highest percentage value
 function highest(emotions) {
     var highest = 0;
     var highestEmotion = "";
@@ -88,6 +92,10 @@ function highest(emotions) {
     return highestEmotion;
 }
 
+// Makes a new list entry with the given name, image, and tags,
+// As well as storing the emotions and image path.
+// Appends the new item to the list, and removes the first item from the list and the firebase
+// if there are more than three items in the list.
 function makeCard(name, image, tags, emotions, path) {
     var card = $("<li>");
     card.attr("id", path);
@@ -121,6 +129,9 @@ function makeCard(name, image, tags, emotions, path) {
     $(".collapsible").append(card);
 }
 
+// Takes in a name, file, and url
+// Returns true if the inputs are valid and false otherwise
+// Also displays any errors if applicable
 function validate(n, f, url) {
     var validated = true;
     var errors = [];
@@ -154,6 +165,8 @@ function validate(n, f, url) {
     return validated;
 }
 
+//Takes in an array of errors (from the validate function)
+// and displays toasts with messages relevant to those errors
 function displayErrors(errors) {
     if (errors.includes("name")) {
         M.toast({html: 'Invalid Name!', classes: 'toastcolor'})
@@ -203,13 +216,17 @@ $("#submit").on("click", function () {
         };
 
         $.ajax(settings).done(function (response) {
-            emotions = JSON.parse(response).faces[0].attributes.emotion;
-            if (enteredUrl) faceHtml(imgUrl, emotions);
-            else faceHtml(image, emotions);
-            tasteDive(highest(emotions));
+            if(JSON.parse(response).faces.length !== 0) {
+                emotions = JSON.parse(response).faces[0].attributes.emotion;
+                if (enteredUrl) faceHtml(imgUrl, emotions);
+                else faceHtml(image, emotions);
+                tasteDive(highest(emotions));
+                $("#favorite").attr("style", "display:default");
+            }
+            else {
+                M.toast({html: 'No face detected', classes: 'toastcolor'})
+            }
         });
-
-        $("#favorite").attr("style", "display:default");
     }
     $("#url").val("");
     $("#file").val("");
