@@ -13,7 +13,7 @@ var ref = firebase.database().ref();
 var facePlusData = {
     happiness: {
         music: ["Vance+joy", "Grouplove"],
-        movies: ["The+Birdcage", "School+of+Rock"],
+        movies: ["Ghostbusters", "Forgetting+sarah+marshall"],
         books: ["The+year+of+yes", "book:eat+pray+love"]
     },
     neutral: {
@@ -32,7 +32,7 @@ var facePlusData = {
         books: ["The+Road", "A+thousand+splendid+suns"]
     },
     anger: {
-        music: ["Converge", "Harms+way"],
+        music: ["Metallica", "Public+enemy"],
         movies: ["movie:The+Revenant", "The+Punisher"],
         books: ["book:Game+of+thrones", "book:Gone+girl"]
     },
@@ -281,7 +281,7 @@ function tasteDive(emotion) {
     var f = facePlusData[emotion].books[1];
 
     $(".results").empty();
-    var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
+    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
 
     $.ajax({
         url: queryUrl,
@@ -305,7 +305,7 @@ function tasteDive(emotion) {
     })
 
     // Use TasteDive to change html for music
-    var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + c + "%2C" + d + "&info=1&limit=12&type=music";
+    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + c + "%2C" + d + "&info=1&limit=12&type=music";
 
     $.ajax({
         url: queryUrl,
@@ -330,7 +330,7 @@ function tasteDive(emotion) {
 
     // Use TasteDive to change html for books
 
-    var queryUrl = "https://tastedive.com/api/similar?k=304653-AlltheFe-6FWI7WPC&q=" + e + "%2C" + f + "&info=1&limit=12&type=books";
+    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + e + "%2C" + f + "&info=1&limit=12&type=books";
 
     $.ajax({
         url: queryUrl,
