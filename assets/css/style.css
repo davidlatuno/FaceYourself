@@ -159,10 +159,10 @@ img {
 }
 
 #toast-container {
-    top: auto !important;
-    right: auto !important;
-    bottom: 32%;
-    left: 14%;
+    position: relative;
+    margin-top: -680px;
+    left: 12.5%;
+    width: 200px;
   }
 
 @media screen and (max-width: 1000px) { 
@@ -212,4 +212,8 @@ img {
         margin-left: 2%;
         margin-top: 26px;
     }
+    #toast-container {
+        position: relative;
+        margin-top: -1400px;
+      }
 }
