@@ -45,10 +45,6 @@ img {
     max-height: 70%;
 }
 
-form {
-    margin-top: -22px;
-}
-
 .buttons {
     padding-left: 45px;
 }
@@ -85,9 +81,27 @@ form {
 }
 
 .buttons a {
-    float: left;
-    display: block;
-    width: 50%;
+    margin-top: 25px;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-left: 19%;
+}
+
+#or {
+    width:100%;
+    clear:both;
+    text-align: center;
+    margin-bottom: -20px;
+    color: #bdbdbd;
+}
+
+.imageUrl {
+    width: 60%;
+    margin-left: 18%;
+}
+
+#submit {
+    margin-top: 10px;
 }
 
 .annoying-button i {
@@ -97,10 +111,6 @@ form {
 .annoying-button span {
     display: block;
     margin-top: -4px;
-}
-
-#url {
-    margin-top: 12px;
 }
 
 #movies .col s4 {
