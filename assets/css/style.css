@@ -21,10 +21,10 @@ p {
 }
 
 #header {  
-    background-color:#2FA599;
+    background-color: #26a69a;
     color: white;
     font-family: 'Lobster Two', cursive;
-    text-shadow: 2px 2px 4px #222222;
+    text-shadow: 2px 2px 4px #455a64;
     border-radius: 5px;
     padding-bottom: 10px;
 }
@@ -32,6 +32,17 @@ p {
 #header h2 {
     padding-left: 20px;
     font-size: 63px;
+}
+
+.modal-trigger {
+    float: right;
+    padding-top: 30px;
+    padding-right: 20px;
+}
+
+i.icon-white {
+    color: white;
+    text-shadow: none;
 }
 
 center {
@@ -139,5 +150,15 @@ img {
 @media screen and (max-width: 768px) {
     .results {
         width: 100%
+    }
+
+    #header h2 {
+        font-size: 53px;
+    }
+
+    .modal-trigger {
+        float: right;
+        padding-top: 25px;
+        padding-right: 0px;
     }
 }
