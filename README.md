@@ -10,6 +10,9 @@ A modern web browser and compatible device.
 
 Upload a picture from the internet or from your local machine. Press the submit button and get a feedback for what movies/music you should watch.
 
+### User Story
+
+As a user, I want to be able to choose my songs so that I can get song recommendations according to my mood, or just see what comes up.
 
 ## Authors
 
