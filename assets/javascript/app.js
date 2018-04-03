@@ -156,19 +156,19 @@ function validate(n, f, url) {
 
 function displayErrors(errors) {
     if (errors.includes("name")) {
-        M.toast({html: 'Invalid Name!'})
+        M.toast({html: 'Invalid Name!', classes: 'toastcolor'})
     }
     if (errors.includes("empty")) {
-        M.toast({html: 'No File or URL'})
+        M.toast({html: 'No File or URL', classes: 'toastcolor'})
     }
     if (errors.includes("url")) {
-        M.toast({html: 'Invalid image URL'})
+        M.toast({html: 'Invalid image URL', classes: 'toastcolor'})
     }
     if (errors.includes("filename")) {
-        M.toast({html: 'Invalid file name'})
+        M.toast({html: 'Invalid file name', classes: 'toastcolor'})
     }
     if (errors.includes("filesize")) {
-        M.toast({html: 'File Too Big'})
+        M.toast({html: 'File Too Big', classes: 'toastcolor'})
     }
 }
 

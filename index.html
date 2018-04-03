@@ -17,33 +17,44 @@
     <div class="container">
         <div class="row">
             <div class="col s12" id="header">
-                <h2>FaceYourself<a class="modal-trigger" href="#help"><i class="material-icons left icon-white">help</i></a></h2>
+                <h2>FaceYourself
+                    <a class="modal-trigger" href="#help">
+                        <i class="material-icons left icon-white">help</i>
+                    </a>
+                </h2>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m4">
-                <div class="card-panel mainPanel">
-                    <img id="image" src="assets/images/demo-pic1.jpg">
-                    <form action="#" enctype="multipart/form-data" class="card-action">
-                        <div class="buttons">
-                            <div class="file-field input-field">
-                                <a class="annoying-button waves-effect waves-light btn">
-                                    <i class="material-icons left">add_a_photo</i>
-                                    <span>upload</span>
-                                    <input id="file" type="file" name="image_file" accept="image/png,image/jpeg" onchange="encodeImageFileAsURL(this)">
-                                </a>
+                <div class="card">
+                    <div class="card-image">
+                        <img id="image" src="assets/images/demo-pic1.jpg">
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input id="user-name" type="text" class="validate" placeholder="User Name" required>
+                </div>
+                <div class="row picUpload">
+                    <div class="col s2">
+                        <form action="#" enctype="multipart/form-data">
+                            <div class="buttons">
+                                <div class="file-field input-field">
+                                    <a class="file-button waves-effect waves-light btn grey lighten-1">
+                                        <i class="material-icons left">add_a_photo</i>
+                                        <input id="file" type="file" name="image_file" accept="image/png,image/jpeg" onchange="encodeImageFileAsURL(this)">
+                                    </a>
+                                </div>
                             </div>
-                            <a class="waves-effect waves-light btn" id="submit">
-                                <i class="material-icons left">arrow_upward</i>submit</a>
+                        </form>
+                    </div>
+                    <div class="col s10">
+                        <div class="input-field imageUrl">
+                            <input id="url" type="text" class="validate" placeholder="Image URL">
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="input-field">
-                    <input id="url" type="text" class="validate" placeholder="Image URL">
-                </div>
-                <div class="input-field">
-                    <input id="user-name" type="text" class="validate" placeholder="User Name">
-                </div>
+                <a class="waves-effect waves-light btn" id="submit">
+                    <i class="material-icons left">arrow_upward</i>submit</a>
             </div>
             <div class="col s12 m4">
                 <div class="center" id="recognition-data">
