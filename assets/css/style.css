@@ -82,6 +82,10 @@ img {
     font-size: 11px;
 }
 
+.picUpload {
+    margin-top: -20px;
+}
+
 .mainPanel {
     padding: 0px;
 }
@@ -149,6 +153,17 @@ img {
     float: left;
     width: 33%;
 }
+
+.toastcolor {
+    background-color: #bdbdbd;
+}
+
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 32%;
+    left: 14%;
+  }
 
 @media screen and (max-width: 1000px) { 
     .imageUrl {
