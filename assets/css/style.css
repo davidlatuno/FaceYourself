@@ -93,19 +93,22 @@ img {
 
 .buttons a {
     margin-top: 25px;
-    width: 40%;
+    width: 53px;
     margin-bottom: 20px;
-    margin-left: 5%;
 }
 
 .imageUrl {
-    float: left;
-    width: 40%;
-    margin-left: 5%;
+    width: 98%;
+    margin-left: 2%;
+    margin-top: 26px;
 }
 
 #submit {
-    margin-top: 10px;
+    margin-left: 35%;
+}
+
+#submit i {
+    margin-left: -8px;
 }
 
 .file-button i {
@@ -147,6 +150,17 @@ img {
     width: 33%;
 }
 
+@media screen and (max-width: 1000px) { 
+    .imageUrl {
+        width: 90%;
+        margin-left: 10%;
+        margin-top: 26px;
+    }
+    #submit {
+        margin-left: 30%;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .results {
         width: 100%
@@ -160,5 +174,27 @@ img {
         float: right;
         padding-top: 25px;
         padding-right: 0px;
+    }
+}
+
+@media screen and (max-width: 744px) {
+    .imageUrl {
+        width: 80%;
+        margin-left: 20%;
+        margin-top: 26px;
+    }
+    #submit {
+        margin-left: 28%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #submit {
+        margin-left: 31%;
+    }
+    .imageUrl {
+        width: 98%;
+        margin-left: 2%;
+        margin-top: 26px;
     }
 }
