@@ -16,10 +16,10 @@ As a user, I want to be able to choose my songs so that I can get song recommend
 
 ## Authors
 
- - Mikaela Mikova - Css Design and Programming
- - David Latuno - Repo Owner and Programming
- - Thomas Berry - General Programming
- - James Erickson - Regex, Agile, and basic Code Monkey :P
+ - Mikaela Mikova
+ - David Latuno
+ - Thomas Berry
+ - James Erickson
 
 ## License
 
