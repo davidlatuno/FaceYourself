@@ -281,7 +281,7 @@ function tasteDive(emotion) {
     var f = facePlusData[emotion].books[1];
 
     $(".results").empty();
-    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
+    var queryUrl = "https://tastedive.com/api/similar?k=304743-FaceYour-EHC0HYWJ&q=" + a + "%2C" + b + "&info=1&limit=12&type=movies";
 
     $.ajax({
         url: queryUrl,
@@ -305,7 +305,7 @@ function tasteDive(emotion) {
     })
 
     // Use TasteDive to change html for music
-    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + c + "%2C" + d + "&info=1&limit=12&type=music";
+    var queryUrl = "https://tastedive.com/api/similar?k=304743-FaceYour-EHC0HYWJ&q=" + c + "%2C" + d + "&info=1&limit=12&type=music";
 
     $.ajax({
         url: queryUrl,
@@ -330,7 +330,7 @@ function tasteDive(emotion) {
 
     // Use TasteDive to change html for books
 
-    var queryUrl = "https://tastedive.com/api/similar?k=304242-AllTheFe-QNCWAHXB&q=" + e + "%2C" + f + "&info=1&limit=12&type=books";
+    var queryUrl = "https://tastedive.com/api/similar?k=304743-FaceYour-EHC0HYWJ&q=" + e + "%2C" + f + "&info=1&limit=12&type=books";
 
     $.ajax({
         url: queryUrl,
